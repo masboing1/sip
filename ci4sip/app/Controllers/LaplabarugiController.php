@@ -2,58 +2,71 @@
 
 namespace App\Controllers;
 
-use App\Models\MasterModel;
 use App\Models\SecurityModel;
+use App\Models\MasterModel;
+use App\Models\LabarugiModel;
 
-class PembelianlistController extends BaseController
+class LaplabarugiController extends BaseController
 {
-    protected $db;
-    protected $master;
     protected $security;
+    protected $master;
+    protected $data;
     public function __construct()
     {
-        $this->db = \Config\Database::connect();
         $this->master = new MasterModel();
         // filter hak akses halaman
         $this->security = new SecurityModel();
-        $menu_id = '040200';
+        $this->data = new LabarugiModel();
+        $menu_id = '050300';
         $data = $this->security->get($menu_id);
         if ($data->getNumRows() == 0) {
             session()->setFlashdata('error', 'Akses ditolak!');
             header('Location: /');
             exit;
         }
+        // akhir filter
     }
 
     public function index()
     {
         $tanggal1 = date('Y-m') . "-01";
         $tanggal2 = date('Y-m-d');
-        return view('layouts/main', [
-            'content' => 'v_pembelian_list',
-            'title' => 'Data Pembelian Barang',
-            'breadcrumb' => '<li>Transaksi</li><li class="active">Pembelian List</li>',
-            'menu1' => '040000',
-            'menu2' => '040200',
+        $data = [
+            'content' => 'v_lap_labarugi',
+            'title' => 'Laporan Laba Rugi',
+            'breadcrumb' => '<li>Laporan</li><li class="active">Laba Rugi</li>',
+            'menu1' => '050000',
+            'menu2' => '050300',
+            'display' => 'form',
             'action_link' => '',
             'cancel_link' => '',
-            'display' => 'form',
+
             'tanggal1' => $tanggal1,
             'tanggal2' => $tanggal2,
-        ]);
+        ];
+
+        return view('layouts/main', $data);
     }
     public function getdata()
     {
         $instansi_id = session()->get('sip_instansi_id');
         $tanggal1 = $this->request->getPost('tanggal1');
         $tanggal2 = $this->request->getPost('tanggal2');
-        $query = db_connect()->query("SELECT tb_pembelian_detail.*,tanggal,suplier_name,operator FROM tb_pembelian,tb_pembelian_detail 
-        where pembelian_faktur = faktur and tanggal between '$tanggal1' and '$tanggal2' and instansi_id = '$instansi_id'")->getresultarray();
+        $total_pembelian = $this->data->total_pembelian($tanggal1, $tanggal2)->getFirstRow();
+        $total_penjualan = $this->data->total_penjualan($tanggal1, $tanggal2, '')->getFirstRow();
+        $data_pemasukan = $this->data->total_operasional($tanggal1, $tanggal2, 'pemasukan')->getresultarray();
+        $data_pengeluaran = $this->data->total_operasional($tanggal1, $tanggal2, 'pengeluaran')->getresultarray();
         $data = [
-            'data' => $query,
+            'rsb' => $total_pembelian,
+            'rsj' => $total_penjualan,
+            'data_pemasukan' => $data_pemasukan,
+            'data_pengeluaran' => $data_pengeluaran,
+            'total_retur' => 0,
             'display' => 'table',
         ];
-        return view('v_pembelian_list', $data);
+        //echo "$total_penjualan->tot_penjualan $total_penjualan->modal $total_penjualan->potongan ";
+        //dd($data);
+        return view('v_lap_labarugi', $data);
     }
     public function cetak($tanggal1, $tanggal2)
     {

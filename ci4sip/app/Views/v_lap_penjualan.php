@@ -44,7 +44,7 @@
         function cetak() {
             var tanggal1 = $('#tanggal1').val();
             var tanggal2 = $('#tanggal2').val();
-            popupCenter("<?= base_url() . 'penjualanlist/cetak/'; ?>" + tanggal1 + "/" + tanggal2, "Cetak data penjualan", 1024,
+            popupCenter("<?= base_url() . 'lappenjualan/cetak/'; ?>" + tanggal1 + "/" + tanggal2, "Cetak data penjualan", 1024,
                 768);
         }
 
@@ -54,7 +54,7 @@
                 var tanggal1 = $("#tanggal1").val();
                 var tanggal2 = $("#tanggal2").val();
                 $.ajax({
-                    url: "<?= base_url(); ?>penjualanlist/getdata",
+                    url: "<?= base_url(); ?>lappenjualan/getdata",
                     method: "POST",
                     data: {
                         tanggal1: tanggal1,
@@ -106,7 +106,7 @@ if ($display == 'table') { ?>
                 ?>
                     <tr>
                         <td><?= $no; ?></td>
-                        <td><?= $rs['faktur']; ?></td>
+                        <td><?= $rs['penjualan_faktur']; ?></td>
                         <td><?= $rs['tanggal']; ?></td>
                         <td><?= $rs['pelanggan_name']; ?></td>
                         <td><?= $rs['barang_id']; ?></td>
@@ -163,7 +163,7 @@ if ($display == 'cetak') { ?>
             ?>
                 <tr>
                     <td style="text-align:center;"><?= $no; ?></td>
-                    <td style="padding-left:5px;"><?= $rs['faktur']; ?></td>
+                    <td style="padding-left:5px;"><?= $rs['penjualan_faktur']; ?></td>
                     <td style="padding-left:5px;"><?= $rs['tanggal']; ?></td>
                     <td style="padding-left:5px;"><?= $rs['pelanggan_name']; ?></td>
                     <td style="text-align:center;"><?= $rs['barang_id']; ?></td>

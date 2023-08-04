@@ -44,7 +44,7 @@
         function cetak() {
             var tanggal1 = $('#tanggal1').val();
             var tanggal2 = $('#tanggal2').val();
-            popupCenter("<?= base_url() . 'labarugi/cetak/'; ?>" + tanggal1 + "/" + tanggal2, "Cetak data penjualan", 1024,
+            popupCenter("<?= base_url() . 'laplabarugi/cetak/'; ?>" + tanggal1 + "/" + tanggal2, "Cetak data penjualan", 1024,
                 768);
         }
 
@@ -54,7 +54,7 @@
                 var tanggal1 = $("#tanggal1").val();
                 var tanggal2 = $("#tanggal2").val();
                 $.ajax({
-                    url: "<?= base_url(); ?>labarugi/getdata",
+                    url: "<?= base_url(); ?>laplabarugi/getdata",
                     method: "POST",
                     data: {
                         tanggal1: tanggal1,

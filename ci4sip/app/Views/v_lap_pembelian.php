@@ -46,7 +46,7 @@
         function cetak() {
             var tanggal1 = $('#tanggal1').val();
             var tanggal2 = $('#tanggal2').val();
-            popupCenter("<?= base_url() . 'pembelianlist/cetak/'; ?>" + tanggal1 + "/" + tanggal2, "Cetak data pembelian", 1024,
+            popupCenter("<?= base_url() . 'lappembelian/cetak/'; ?>" + tanggal1 + "/" + tanggal2, "Cetak data pembelian", 1024,
                 768);
         }
 
@@ -56,7 +56,7 @@
                 var tanggal1 = $("#tanggal1").val();
                 var tanggal2 = $("#tanggal2").val();
                 $.ajax({
-                    url: "<?= base_url(); ?>pembelianlist/getdata",
+                    url: "<?= base_url(); ?>lappembelian/getdata",
                     method: "POST",
                     data: {
                         tanggal1: tanggal1,
@@ -142,7 +142,7 @@ if ($display == 'cetak') { ?>
             ?>
                 <tr>
                     <td style="text-align:center;"><?= $no; ?></td>
-                    <td style="padding-left:5px;"><?= $rs['faktur']; ?></td>
+                    <td style="padding-left:5px;"><?= $rs['pembelian_faktur']; ?></td>
                     <td style="padding-left:5px;"><?= $rs['tanggal']; ?></td>
                     <td style="padding-left:5px;"><?= $rs['suplier_name']; ?></td>
                     <td style="text-align:center;"><?= $rs['barang_id']; ?></td>

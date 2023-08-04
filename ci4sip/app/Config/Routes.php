@@ -120,10 +120,6 @@ $routes->get('/pembelian/cart_delete/(:segment)', 'PembelianController::cart_del
 $routes->get('/pembelian/cart_reset', 'PembelianController::cart_reset');
 $routes->post('/pembelian/save', 'PembelianController::save');
 
-$routes->get('/pembelianlist', 'PembelianlistController::index');
-$routes->post('/pembelianlist/getdata', 'PembelianlistController::getdata');
-$routes->get('/pembelianlist/cetak/(:segment)/(:segment)', 'PembelianlistController::cetak/$1/$2');
-
 $routes->get('/penjualan', 'PenjualanController::index');
 $routes->get('/penjualan/cart_read', 'PenjualanController::cart_read');
 $routes->get('/penjualan/total', 'PenjualanController::total');
@@ -133,10 +129,6 @@ $routes->get('/penjualan/cart_delete/(:segment)', 'PenjualanController::cart_del
 $routes->get('/penjualan/cart_reset', 'PenjualanController::cart_reset');
 $routes->post('/penjualan/save', 'PenjualanController::save');
 $routes->get('/penjualan/struk/(:segment)', 'PenjualanController::struk/$1');
-
-$routes->get('/penjualanlist', 'PenjualanlistController::index');
-$routes->post('/penjualanlist/getdata', 'PenjualanlistController::getdata');
-$routes->get('/penjualanlist/cetak/(:segment)/(:segment)', 'PenjualanlistController::cetak/$1/$2');
 
 $routes->get('/returpenjualan', 'ReturpenjualanController::index');
 $routes->get('/returpenjualan/cart_read', 'ReturpenjualanController::cart_read');
@@ -156,16 +148,18 @@ $routes->get('/operasional/change/(:segment)', 'operasionalController::change/$1
 $routes->post('/operasional/update/(:segment)', 'operasionalController::update/$1');
 $routes->get('/operasional/delete/(:segment)', 'operasionalController::delete/$1');
 
-$routes->get('/labarugi', 'labarugiController::index');
-$routes->post('/labarugi/getdata', 'labarugiController::getdata');
-$routes->get('/labarugi/cetak/(:segment)/(:segment)', 'labarugiController::cetak/$1/$2');
+//laporan
+$routes->get('/lappembelian', 'lappembelianController::index');
+$routes->post('/lappembelian/getdata', 'lappembelianController::getdata');
+$routes->get('/lappembelian/cetak/(:segment)/(:segment)', 'lappembelianController::cetak/$1/$2');
 
-$routes->get('/ajax', 'AjaxController::index');
-$routes->get('/ajax/cart_read', 'AjaxController::cart_read');
-$routes->post('/ajax/getbarang', 'AjaxController::getbarang');
-$routes->post('/ajax/cart_add', 'AjaxController::cart_add');
-$routes->get('/ajax/cart_delete/(:segment)', 'AjaxController::cart_delete/$1');
-$routes->get('/ajax/cart_reset', 'AjaxController::cart_reset');
+$routes->get('/lappenjualan', 'lappenjualanController::index');
+$routes->post('/lappenjualan/getdata', 'lappenjualanController::getdata');
+$routes->get('/lappenjualan/cetak/(:segment)/(:segment)', 'lappenjualanController::cetak/$1/$2');
+
+$routes->get('/laplabarugi', 'laplabarugiController::index');
+$routes->post('/laplabarugi/getdata', 'laplabarugiController::getdata');
+$routes->get('/laplabarugi/cetak/(:segment)/(:segment)', 'laplabarugiController::cetak/$1/$2');
 
 /*
  * --------------------------------------------------------------------
