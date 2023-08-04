@@ -1,0 +1,13 @@
+Routes
+
+Model :
+- 
+
+Controller :
+-
+
+View :
+- v_pembelian_list
+
+
+
