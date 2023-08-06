@@ -10,7 +10,7 @@
             <li>
                 <a href="#"><?= session()->get('sip_instansi_name'); ?></a>
             </li>
-            <li class="user-menu"><a href="/login/dologout" id="keluar" class="btn btn-flat"><i class="fa fa-sign-out"></i>
+            <li class="user-menu"><a href="<?= base_url()."login/dologout"; ?>" id="keluar" class="btn btn-flat"><i class="fa fa-sign-out"></i>
                     Keluar</a></li>
         </ul>
     </div>

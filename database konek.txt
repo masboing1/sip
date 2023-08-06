@@ -1,0 +1,4 @@
+database : sund1374_ci4sip
+server   : 
+user     : sund1374_ci4sip
+password : ?0?2C01tAG*#

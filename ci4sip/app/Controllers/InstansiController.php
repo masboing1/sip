@@ -18,13 +18,7 @@ class InstansiController extends BaseController
         // filter hak akses halaman
         $this->security = new SecurityModel();
         $menu_id = '010100';
-        $data = $this->security->get($menu_id);
-        if ($data->getNumRows() == 0) {
-            session()->setFlashdata('error', 'Akses ditolak!');
-            header('Location: /');
-            exit;
-        }
-        // akhir filter
+        $this->security->get($menu_id);
     }
 
     public function index()
@@ -50,8 +44,8 @@ class InstansiController extends BaseController
             'menu1' => '010000',
             'menu2' => '010100',
             'action' => 'create',
-            'action_link' => '/instansi/save',
-            'cancel_link' => '/instansi',
+            'action_link' => base_url().'instansi/save',
+            'cancel_link' => base_url().'instansi',
 
             'id' => '',
             'name' => '',
@@ -86,8 +80,8 @@ class InstansiController extends BaseController
             'menu1' => '010000',
             'menu2' => '010100',
             'action' => 'change',
-            'action_link' => '/instansi/update/' . $id,
-            'cancel_link' => '/instansi',
+            'action_link' => base_url().'nstansi/update/' . $id,
+            'cancel_link' => base_url().'instansi',
 
             'id' => $rs['id'],
             'name' => $rs['name'],

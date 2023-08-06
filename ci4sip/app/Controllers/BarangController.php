@@ -18,13 +18,7 @@ class BarangController extends BaseController
         // filter hak akses halaman
         $this->security = new SecurityModel();
         $menu_id = '030100';
-        $data = $this->security->get($menu_id);
-        if ($data->getNumRows() == 0) {
-            session()->setFlashdata('error', 'Akses ditolak!');
-            header('Location: /');
-            exit;
-        }
-        // akhir filter
+        $this->security->get($menu_id);
     }
 
     public function index()
@@ -38,8 +32,8 @@ class BarangController extends BaseController
             'menu1' => '030000',
             'menu2' => '030100',
             'action' => 'view',
-            'action_link' => '/barang/save',
-            'cancel_link' => '/barang',
+            'action_link' => '',
+            'cancel_link' => '',
             'data' => $this->data->getdata(),
             'instansi_id' => $instansi_id,
             'instansi_name' => $instansi_name,
@@ -58,8 +52,8 @@ class BarangController extends BaseController
             'menu1' => '030000',
             'menu2' => '030100',
             'action' => 'create',
-            'action_link' => '/barang/save',
-            'cancel_link' => '/barang',
+            'action_link' => base_url().'barang/save',
+            'cancel_link' => base_url().'barang',
 
             'data_instansi' => $this->master->get('tm_instansi'),
             'instansi_selected' => '',
@@ -114,8 +108,8 @@ class BarangController extends BaseController
             'menu1' => '030000',
             'menu2' => '030100',
             'action' => 'change',
-            'action_link' => '/barang/update/' . $id,
-            'cancel_link' => '/barang',
+            'action_link' => base_url().'barang/update/' . $id,
+            'cancel_link' => base_url().'barang',
 
             'data_instansi' => $this->master->get('tm_instansi'),
             'instansi_selected' => $rs['instansi_id'],

@@ -28,7 +28,7 @@
                         if (session()->get('sip_level') == 'administrator') {
                             $change = '<a href="' . base_url() . "jenisoperasional/change/" . $rs['id'] . '" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="top" title="Change"><i class="fa fa-edit"></i></a>';
                             $delete = '<a href="' . base_url() . "jenisoperasional/delete/" . $rs['id'] . '" class="btn btn-danger btn-xs tombol-hapus" value="' . $rs['id'] . '" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash-o"></i></a>';
-                            echo "<td><div class='btn-group'><?= $change . $delete; ?></div></td>";
+                            echo "<td><div class='btn-group'>$change $delete</div></td>";
                         } ?>
                     </tr>
                 <?php endforeach; ?>

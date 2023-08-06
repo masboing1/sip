@@ -18,13 +18,7 @@ class JenisOperasionalController extends BaseController
         // filter hak akses halaman
         $this->security = new SecurityModel();
         $menu_id = '020300';
-        $data = $this->security->get($menu_id);
-        if ($data->getNumRows() == 0) {
-            session()->setFlashdata('error', 'Akses ditolak!');
-            header('Location: /');
-            exit;
-        }
-        // akhir filter
+        $this->security->get($menu_id);
     }
 
     public function index()
@@ -37,8 +31,8 @@ class JenisOperasionalController extends BaseController
             'menu2' => '020300',
             'data' => $this->data->getdata(),
             'action' => 'view',
-            'action_link' => '/jenisoperasional/save',
-            'cancel_link' => '/jenisoperasional',
+            'action_link' => base_url().'jenisoperasional/save',
+            'cancel_link' => base_url().'jenisoperasional',
 
             'id' => $this->master->get_id_master('tm_jenis_operasional', 'id'),
             'uraian' => '',
@@ -56,8 +50,8 @@ class JenisOperasionalController extends BaseController
             'menu1' => '020000',
             'menu2' => '020300',
             'action' => 'create',
-            'action_link' => '/jenisoperasional/save',
-            'cancel_link' => '/jenisoperasional',
+            'action_link' => base_url().'jenisoperasional/save',
+            'cancel_link' => base_url().'jenisoperasional',
 
             'uraian' => '',
             'jenis' => '',
@@ -98,8 +92,8 @@ class JenisOperasionalController extends BaseController
             'menu2' => '020300',
             'data' => $this->data->getdata(),
             'action' => 'change',
-            'action_link' => '/jenisoperasional/update/' . $id,
-            'cancel_link' => '/jenisoperasional',
+            'action_link' => base_url().'jenisoperasional/update/' . $id,
+            'cancel_link' => base_url().'jenisoperasional',
 
             'id' => $rs['id'],
             'uraian' => $rs['uraian'],

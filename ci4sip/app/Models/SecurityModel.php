@@ -12,6 +12,12 @@ class SecurityModel extends Model
     {
         $level = session()->get('sip_level');
         $data = db_connect()->query("Select * from tb_access where level = '$level' and menu_id = '$menu_id'");
-        return $data;
+        
+        if ($data->getNumRows() == 0) {
+            session()->setFlashdata('error', 'Akses ditolak!');
+            header("Location:".base_url());
+            exit;
+        }
+       // return $data;
     }
 }

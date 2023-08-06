@@ -18,13 +18,7 @@ class LaplabarugiController extends BaseController
         $this->security = new SecurityModel();
         $this->data = new LabarugiModel();
         $menu_id = '050300';
-        $data = $this->security->get($menu_id);
-        if ($data->getNumRows() == 0) {
-            session()->setFlashdata('error', 'Akses ditolak!');
-            header('Location: /');
-            exit;
-        }
-        // akhir filter
+        $this->security->get($menu_id);
     }
 
     public function index()

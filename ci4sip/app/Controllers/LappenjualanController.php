@@ -17,12 +17,7 @@ class LappenjualanController extends BaseController
         // filter hak akses halaman
         $this->security = new SecurityModel();
         $menu_id = '040400';
-        $data = $this->security->get($menu_id);
-        if ($data->getNumRows() == 0) {
-            session()->setFlashdata('error', 'Akses ditolak!');
-            header('Location: /');
-            exit;
-        }
+        $this->security->get($menu_id);
     }
 
     public function index()

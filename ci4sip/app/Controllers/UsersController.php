@@ -18,13 +18,7 @@ class UsersController extends BaseController
         // filter hak akses halaman
         $this->security = new SecurityModel();
         $menu_id = '010200';
-        $data = $this->security->get($menu_id);
-        if ($data->getNumRows() == 0) {
-            session()->setFlashdata('error', 'Akses ditolak!');
-            header('Location: /');
-            exit;
-        }
-        // akhir filter
+        $this->security->get($menu_id);
     }
 
     public function index()
